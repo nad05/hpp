@@ -47,8 +47,8 @@ public class MainNonStreaming {
 		// Add you query processor here
 		//processors.add(new SimpleQuerySumEvent(measure));
 		//processors.add(new SumQuery(measure));
-		processors.add(new NaiveAverage(measure));
-		//processors.add(new IncrementalAverage(measure));
+		//processors.add(new NaiveAverage(measure));
+		processors.add(new IncrementalAverage(measure));
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);

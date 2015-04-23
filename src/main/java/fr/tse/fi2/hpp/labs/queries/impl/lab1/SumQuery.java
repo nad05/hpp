@@ -17,6 +17,7 @@ public class SumQuery extends AbstractQueryProcessor {
 	protected void process(DebsRecord record) {
 		sum +=record.getFare_amount();
 		writeLine("Somme "+ sum);
+		
 
 	}
 

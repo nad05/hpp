@@ -1,4 +1,4 @@
-package fr.tse.fi2.hpp.labs.queries.impl;
+package fr.tse.fi2.hpp.labs.queries.impl.lab1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class NaiveAverage extends AbstractQueryProcessor {
 			sum += f;
 		}
 		writeLine("current mean : " + (sum / numbers.size()));
+		
 	}
 
 }
