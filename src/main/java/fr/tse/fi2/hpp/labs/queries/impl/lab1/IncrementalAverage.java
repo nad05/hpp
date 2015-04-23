@@ -1,4 +1,4 @@
-package fr.tse.fi2.hpp.labs.queries.impl;
+package fr.tse.fi2.hpp.labs.queries.impl.lab1;
 
 import fr.tse.fi2.hpp.labs.beans.DebsRecord;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
@@ -18,6 +18,7 @@ public class IncrementalAverage extends AbstractQueryProcessor {
 		nb++;
 		sum += record.getFare_amount();
 		writeLine("current mean : " + (sum / nb));
+    		
 	}
 
 }
