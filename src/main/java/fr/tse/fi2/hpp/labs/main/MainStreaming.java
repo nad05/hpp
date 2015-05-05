@@ -14,6 +14,7 @@ import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
 import fr.tse.fi2.hpp.labs.queries.impl.SimpleQuerySumEvent;
 import fr.tse.fi2.hpp.labs.queries.impl.lab1.IncrementalAverage;
 import fr.tse.fi2.hpp.labs.queries.impl.lab1.NaiveAverage;
+import fr.tse.fi2.hpp.labs.queries.impl.lab4.RouteMembershipProcessor;
 
 /**
  * Main class of the program. Register your new queries here
@@ -38,14 +39,16 @@ public class MainStreaming {
 		// Init dispatcher
 		StreamingDispatcher dispatch = new StreamingDispatcher(
 				//"src/main/resources/data/1000Records.csv");
-				"src/main/resources/data/100k.csv");
+				"src/main/resources/data/sorted_data.csv");
 
 		// Query processors
 		List<AbstractQueryProcessor> processors = new ArrayList<>();
+		RouteMembershipProcessor RMSP =new RouteMembershipProcessor(measure);
 		// Add you query processor here
 		//processors.add(new SimpleQuerySumEvent(measure));
 		//processors.add(new NaiveAverage(measure));
-		processors.add(new IncrementalAverage(measure));
+		//processors.add(new IncrementalAverage(measure));
+		processors.add(RMSP);
 		// Register query processors
 		for (AbstractQueryProcessor queryProcessor : processors) {
 			dispatch.registerQueryProcessor(queryProcessor);
@@ -76,6 +79,19 @@ public class MainStreaming {
 		// Output measure and ratio per query processor
 		measure.setProcessedRecords(dispatch.getRecords());
 		measure.outputMeasure();
+		float plong = (float) -73.98353;
+		float plat = (float)  40.749985;
+		float dlong = (float) -73.99183;
+		float dlat = (float)   40.74913;
+		String lic= "441D5B00E6EC31C7951D9E5E81CA6A57";
+		int ligne = RMSP.CheckRoute(plong, plat, dlong, dlat, lic);
+		if (ligne!=-1)
+		{
+			ligne+=1;
+			System.out.println("Found it at :"+ ligne);
+		}
+		else
+			System.out.println("Try again ...");
 
 	}
 
