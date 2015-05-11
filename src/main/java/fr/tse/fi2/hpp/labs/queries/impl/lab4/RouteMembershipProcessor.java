@@ -25,7 +25,11 @@ public class RouteMembershipProcessor extends AbstractQueryProcessor{
 		
 		for(int i=0;i<tabroute.size();i++)
 		{
-			if (plong==tabroute.get(i).getPickup_longitude() && plat==tabroute.get(i).getPickup_latitude() && dlong==tabroute.get(i).getDropoff_longitude() && dlat==tabroute.get(i).getDropoff_latitude() && lic==tabroute.get(i).getHack_license() )
+			if (plong==tabroute.get(i).getPickup_longitude() 
+					&& plat==tabroute.get(i).getPickup_latitude() 
+					&& dlong==tabroute.get(i).getDropoff_longitude() 
+					&& dlat==tabroute.get(i).getDropoff_latitude() 
+					&& lic==tabroute.get(i).getHack_license() )
 			{
 				return i;
 			}
