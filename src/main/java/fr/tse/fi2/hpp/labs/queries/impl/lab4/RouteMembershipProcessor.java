@@ -8,7 +8,9 @@ import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
 
 public class RouteMembershipProcessor extends AbstractQueryProcessor{
 
-	ArrayList<DebsRecord> tabroute = new ArrayList<DebsRecord> () ;
+	static ArrayList<DebsRecord> tabroute = new ArrayList<DebsRecord> () ;
+	private int count = 0;
+	private static DebsRecord recTest;
 	
 	public RouteMembershipProcessor(QueryProcessorMeasure measure) {
 		super(measure);
@@ -18,22 +20,27 @@ public class RouteMembershipProcessor extends AbstractQueryProcessor{
 	@Override
 	protected void process(DebsRecord record) {
 		tabroute.add(record);
-    		
+		count++;
+		if(count==15){
+			recTest = record;
+		}
+
 	}
-	
-	public int CheckRoute(float plong,float plat,float dlong,float dlat,String lic){
+
+	public static DebsRecord getRec(){ return recTest; }
+	public static boolean CheckRoute(DebsRecord rec){
 		
 		for(int i=0;i<tabroute.size();i++)
 		{
-			if (plong==tabroute.get(i).getPickup_longitude() 
-					&& plat==tabroute.get(i).getPickup_latitude() 
-					&& dlong==tabroute.get(i).getDropoff_longitude() 
-					&& dlat==tabroute.get(i).getDropoff_latitude() 
-					&& lic==tabroute.get(i).getHack_license() )
+			if (rec.getPickup_longitude()==tabroute.get(i).getPickup_longitude() 
+					&& rec.getPickup_latitude()==tabroute.get(i).getPickup_latitude() 
+					&& rec.getDropoff_longitude()==tabroute.get(i).getDropoff_longitude() 
+					&& rec.getDropoff_latitude()==tabroute.get(i).getDropoff_latitude() 
+					&& rec.getHack_license()==tabroute.get(i).getHack_license() )
 			{
-				return i;
+				return true;
 			}
 		}
-		return -1;
+		return false;
 	}
 }
