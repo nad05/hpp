@@ -7,9 +7,9 @@ import org.bouncycastle.util.encoders.Hex;
 
 public class SHA3Util {
     
-    public static int digest(String string, String salt, int size, int modulo) {
+    public static int digest(String string, int size, int modulo) {
     	 DigestSHA3 md = new DigestSHA3(size);
-         String text = (string+salt);
+         String text = string;
          
          try 
          	     {
@@ -32,9 +32,9 @@ public class SHA3Util {
     	return bigInt.mod(m).intValue();
     }
     
-    public static void main(String[] args) 
+    /*public static void main(String[] args) 
     {
-    System.out.println(digest("telecom", "1", 512, 14378));
-    System.out.println(digest("telecom", "2", 512, 14378));
-    }
+    System.out.println(digest("telecom1", 512, 14378));
+    System.out.println(digest("telecom2", 512, 14378));
+    }*/
 }
