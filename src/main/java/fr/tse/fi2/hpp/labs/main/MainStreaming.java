@@ -8,6 +8,7 @@ import java.util.concurrent.CountDownLatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.tse.fi2.hpp.labs.beans.DebsRecord;
 import fr.tse.fi2.hpp.labs.beans.measure.QueryProcessorMeasure;
 import fr.tse.fi2.hpp.labs.dispatcher.StreamingDispatcher;
 import fr.tse.fi2.hpp.labs.queries.AbstractQueryProcessor;
@@ -84,10 +85,17 @@ public class MainStreaming {
 		float dlong = (float) -73.99183;
 		float dlat = (float)   40.74913;
 		String lic= "441D5B00E6EC31C7951D9E5E81CA6A57";
-		int ligne = RMSP.CheckRoute(plong, plat, dlong, dlat, lic);
-		if (ligne!=-1)
+		
+		DebsRecord recordTestFaux = new DebsRecord("", "", 4, 4, 4, 4, 4, 4, 4, 4, "", 4, 4, 4, 4, 4, 4, false);
+		DebsRecord recordTestVrai = new DebsRecord("", lic, 4, 4, 4, 4, plong, plat, dlong, dlat, "", 4, 4, 4, 4, 4, 4, false);
+		
+		System.out.println("Route find : " + RouteMembershipProcessor.CheckRoute(recordTestVrai));
+		System.out.println("Route find : " + RouteMembershipProcessor.CheckRoute(recordTestFaux));
+		boolean ligne = RMSP.CheckRoute(recordTestFaux);
+		int nb = 0;
+		if (ligne!=false)
 		{
-			ligne+=1;
+			nb+=1;
 			System.out.println("Found it at :"+ ligne);
 		}
 		else

@@ -23,10 +23,10 @@ public class MergeSortTest {
 	    tab2 = new int[SIZE];
 	    Random generator = new Random();
 	    for (int i = 0; i < tab1.length; i++) {
-	      tab1[i] = generator.nextInt(1000);
+	      tab1[i] = generator.nextInt(10000);
 	      tab2[i]=tab1[i];
 	    }
-	  }
+	}	
 	@Test
 	public void test() {
 		long startTime = System.currentTimeMillis();
@@ -54,4 +54,33 @@ public class MergeSortTest {
 	    assertTrue(Arrays.equals(tab1,tab2) );
 	}
 
+	@Test
+	public void multitest() throws Exception {
+		System.out.println("\n");
+		System.out.println("Mergesort multi : \n");
+		long startTime = System.currentTimeMillis();
+		int m=100;
+		int[] tabtest;
+		tabtest = new int[SIZE];
+		for (int j=0;j<m;j++)
+		{
+			Random generator = new Random();
+		    for (int i = 0; i < tabtest.length; i++) {
+		      tabtest[i] = generator.nextInt(1000);
+		      
+		    }
+		
+	    MergeSort sorter = new MergeSort();
+	    sorter.sort(tabtest);
+
+	    Arrays.sort(tabtest);
+
+	    assertTrue(Arrays.equals(tab1,tab2) );
+	  
+		}
+		  
+	    long stopTime = System.currentTimeMillis();
+	    long exeTime = stopTime - startTime;
+	    System.out.println("le temps d'execution du Multi_Mergesort est: " + exeTime);
+	}
 }
